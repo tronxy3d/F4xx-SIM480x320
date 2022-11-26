@@ -25,14 +25,13 @@
   4. If the applicable model listed on this page does not have your model, please download another appropriate firmware
 
   5. Open Marlin/TronxyMachine.h, Find #define TRONXY_ PROJ, change the following project name to PROJ_ XXX (XXX represents your printer model).
-    - Note: The modified project name must be a name defined above the file(TronxyMachine.h). If there is no such name, contact customer service for handling
-    e.g. your model is XY2_PRO:
+  - Note: The modified project name must be a name defined above the file(TronxyMachine.h). If there is no such name, contact customer service for handling.
+  e.g. your model is XY2_PRO:
 <img align="center" width=473 src="buildroot/share/pixmaps/tronxy/modify_model.png" />
 
   6. Open file: .platformio\packages\framework-arduinoststm32\system\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c
-  
-    - Find function USBH_ StatusTypeDef USBH_ Init(...)
-    - Add a statement below the statement 'USBH_LL_Init(phost);' : 'USBH_LL_Disconnect(phost);'
+  - Find function USBH_ StatusTypeDef USBH_ Init(...)
+  - Add a statement below the statement 'USBH_LL_Init(phost);' : 'USBH_LL_Disconnect(phost);'
 <img align="center" width=372 src="buildroot/share/pixmaps/tronxy/modify_model.png" />
 
   7. Compile the firmware. The first compilation may take a long time. The compiled target file is placed in the 'update' folder
@@ -42,14 +41,14 @@
 ## FAQ
 
   1. If you want to switch back to the original interface of Marlin, just define "#define TRONXY_UI" in "Marlin/TronxyMachine.h" as UI_MARLIN_DEFAULT
-    - Note: Remember the current UI name, otherwise, when you want to switch back to the factory interface, you will forget which UI it is, because different UI    correspond to different resolution screens. If you switch incorrectly, an exception will be displayed.
+  - Note: Remember the current UI name, otherwise, when you want to switch back to the factory interface, you will forget which UI it is, because different UI    correspond to different resolution screens. If you switch incorrectly, an exception will be displayed.
 <img align="center" width=482 src="buildroot/share/pixmaps/tronxy/default_ui.png" />
 
   2. When you burn the firmware you compiled into the machine and report an error all the time, you should pay attention to: by default, the main control chip corresponding to this firmware is STM32F446ZET, but in fact, because another chip GD32F4 may be used on the same machine, you need to confirm which chip your machine is.There are two confirmation methods:
   - 2.1 Enter System ->Info to view. If there is 'GD32' in it, it means GD32 series chips. If there is no GD32, it means STM32 series chips
   - 2.2 Open the chassis directly and check the screen print of the main control chip on the control board, which will be marked with GD32 or STM32
 
-    When GD32 series chips are confirmed, you need to modify:
+    + When GD32 series chips are confirmed, you need to modify:
     - In the "platformio.ini" file, find Section [my_board], where there is a "DMCU_TYPE=0", change it to "DMCU_TYPE=4"
     - In the platformio installation directory, find the function uint32_t analogRead(uint32_t ulPin) in the .platformio\packages\framework-arduinoststm32\cores\arduino\wiring_analog.c, Add some code under the statement "value = adc_read_value(p, _internalReadResolution)",like this:
       
