@@ -24,12 +24,13 @@
   
   4. If the applicable model listed on this page does not have your model, please download another appropriate firmware
 
-  5. Open Marlin/TronxyMachine.h, Find #define TRONXY_ PROJ, change the following project name to PROJ_ XXX (XXX represents your printer model)
+  5. Open Marlin/TronxyMachine.h, Find #define TRONXY_ PROJ, change the following project name to PROJ_ XXX (XXX represents your printer model).
     - Note: The modified project name must be a name defined above the file(TronxyMachine.h). If there is no such name, contact customer service for handling
     e.g. your model is XY2_PRO:
 <img align="center" width=473 src="buildroot/share/pixmaps/tronxy/modify_model.png" />
 
-  6. Open file: .platformio\packages\framework-arduinoststm32\system\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c,
+  6. Open file: .platformio\packages\framework-arduinoststm32\system\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c
+  
     - Find function USBH_ StatusTypeDef USBH_ Init(...)
     - Add a statement below the statement 'USBH_LL_Init(phost);' : 'USBH_LL_Disconnect(phost);'
 <img align="center" width=372 src="buildroot/share/pixmaps/tronxy/modify_model.png" />
