@@ -48,7 +48,7 @@
   - 2.1 Enter System ->Info to view. If there is 'GD32' in it, it means GD32 series chips. If there is no GD32, it means STM32 series chips
   - 2.2 Open the chassis directly and check the screen print of the main control chip on the control board, which will be marked with GD32 or STM32
 
-    + When GD32 series chips are confirmed, you need to modify:
+    When GD32 series chips are confirmed, you need to modify:
     - In the "platformio.ini" file, find Section [my_board], where there is a "DMCU_TYPE=0", change it to "DMCU_TYPE=4"
     - In the platformio installation directory, find the function uint32_t analogRead(uint32_t ulPin) in the .platformio\packages\framework-arduinoststm32\cores\arduino\wiring_analog.c, Add some code under the statement "value = adc_read_value(p, _internalReadResolution)",like this:
       
@@ -81,16 +81,6 @@
       value = mapResolution(value...
 <img align="center" width=591 src="buildroot/share/pixmaps/tronxy/gd32_analog.png" />
 
-    - Find the function USBHInit in the .platformio\packages\framework-arduinoststm32\system\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c,
-      Add a statement 'USBH_LL_Disconnect(phost);' under 'USBH_LL_Init(phost);',like this:
-      
-      ...
-     
-      USBH_LL_Init(phost);
-      
-      USBH_LL_Disconnect(phost);
-      
-      ...
     After modification, recompile and burn. At this time, it becomes the firmware of GD32
   
   3. If you encounter problems like " multiple definition of 'EXTI1_IRQHandler' " as shown below, please find the location of the file in the figure below
