@@ -32,7 +32,7 @@
   6. Open file: .platformio\packages\framework-arduinoststm32\system\Middlewares\ST\STM32_USB_Host_Library\Core\Src\usbh_core.c
   - Find function USBH_ StatusTypeDef USBH_ Init(...)
   - Add a statement below the statement 'USBH_LL_Init(phost);' : 'USBH_LL_Disconnect(phost);'
-<img align="center" width=372 src="buildroot/share/pixmaps/tronxy/modify_model.png" />
+<img align="center" width=372 src="buildroot/share/pixmaps/tronxy/usb_core_modify.png" />
 
   7. Compile the firmware. The first compilation may take a long time. The compiled target file is placed in the 'update' folder
 
