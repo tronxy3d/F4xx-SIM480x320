@@ -498,9 +498,12 @@ void CardReader::manage_media() {
   if(myui_ready < 2 || my_print_status == PRINT_ERROR)return;
   static bool first = true;
   if(first) {
-    PrintJobRecovery::load(); //因为有可能有多个打印设备源(SD卡,USB),所以,先load出设备号
-    if(recovery.valid())xy_device_id = PrintJobRecovery::info.deviceId;
+    if(PrintJobRecovery::exists()) { //因为有可能有多个打印设备源(SD卡,USB),所以,先load出设备号
+      PrintJobRecovery::load(); 
+      xy_device_id = PrintJobRecovery::info.deviceId;
+    }
     else xy_device_id = 0;
+    first = false;
   }
   uint8_t stat;
   #if USBHOST_HS_EN

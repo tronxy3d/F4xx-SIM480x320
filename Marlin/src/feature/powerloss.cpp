@@ -187,6 +187,7 @@ void PrintJobRecovery::prepare() {
   int i = 0;
   for(; i < LONG_FILENAME_LENGTH - 1 && card.longFilename[i]; i++)info.sd_longname[i] = card.longFilename[i];
   info.sd_longname[i] = 0;
+  clearInterruptSign(/*true*/);
   #endif
   cmd_sdpos = 0;
 }
