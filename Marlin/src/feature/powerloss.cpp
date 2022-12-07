@@ -517,8 +517,8 @@ void PrintJobRecovery::resume() {
   #if Z_HOME_TO_MAX
 
     #if Z_HOME_DIR > 0
-      QUEUE_CMD("G28R0 S0");
-      while(queue.has_commands_queued() || planner.has_blocks_queued())hal.watchdog_refresh();
+      gcode.process_subcommands_now(F("G28R0 S0"));
+      while(queue.has_commands_queued() || planner.has_blocks_queued())idle();
       current_position.z = info.zBottomPos; //复位后的高度即为正常复位时探头到限位开关的距离,因为把探头探点当成0点
       sync_plan_position();
       #if !TRONXY_UI

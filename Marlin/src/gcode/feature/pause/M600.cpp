@@ -74,6 +74,8 @@ void GcodeSuite::M600() {
 
   #if TRONXY_UI
   if(my_print_status != PRINT_RUNNING)return;
+  yevt.addEvt(TASK_SEQUENCE,screenFilament);
+  yevt.addEvt(TASK_SEQUENCE,popupFilamentOut);
   quickstop_stepper();
   destination = current_position;
   #endif

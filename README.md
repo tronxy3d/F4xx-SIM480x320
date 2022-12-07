@@ -88,6 +88,8 @@
     open the file and comment out “void EXTI1_IRQHandler(void)”(according to the error message) function, as shown in the figure.
 <img align="center" width=685 src="buildroot/share/pixmaps/tronxy/comment_exti.png" />
 
+  4. When you burn the firmware to the board from SD card, it bootloop and tries to initialize over and over again, the problem is that your board doesn't supoort USB device but the firmware start it. So you should discard the USB, find the section "[my_proj]" in platformio.ini, modify -DUSBHOST_HS_EN=1 to -DUSBHOST_HS_EN=0, then re-compile it and burn, then the problem should be resolved.
+
 
 ## Other
 

@@ -95,8 +95,6 @@ void event_filament_runout(const uint8_t extruder) {
       else out_extruder = 1;
     }
     else out_extruder = extruder;
-    yevt.addEvt(TASK_SEQUENCE,screenFilament);
-    yevt.addEvt(TASK_SEQUENCE,popupFilamentOut);
   #else
     TERN_(EXTENSIBLE_UI, ExtUI::onFilamentRunout(ExtUI::getTool(extruder)));
     TERN_(DWIN_LCD_PROUI, DWIN_FilamentRunout(extruder));
