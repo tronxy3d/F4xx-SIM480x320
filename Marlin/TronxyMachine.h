@@ -33,7 +33,7 @@
 #define UI_MARLIN_DEFAULT  0
 #define UI_SIM480X320      2
 
-#define TRONXY_PROJ        PROJ_X5SA_PRO
+#define TRONXY_PROJ        PROJ_X5SA400_2E
 #define TRONXY_UI          UI_SIM480X320
 
 #if TRONXY_UI > 0
@@ -250,7 +250,7 @@
 #define LASER_SERIAL              1 //wifi端子用于激光PWM控制
 #define DUAL_ZMAX_HOME            0 //大端复位,向反方向复位,再回到正方向找0点
 #define Z_BED_MOVE                1 //Z轴移动:热床
-#define EXTRUDERS                 1 //挤出机数量
+#define EXTRUDERS                 2 //挤出机数量
 #define INVERT_E0_DIR             true //TITAN:true,true
 #define INVERT_E1_DIR             true
 #define USE_EXTRUDER              1 //TITAN:1,BMG:2,TAOLI:3,general:4
