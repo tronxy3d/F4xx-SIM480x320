@@ -2873,7 +2873,9 @@ void MarlinSettings::postprocess() {
         }
 
         int pos = mesh_slot_offset(slot);
+        #ifndef EEPROM_AT24CXX
         uint16_t crc = 0;
+        #endif
 
         #if ENABLED(OPTIMIZED_MESH_STORAGE)
           int16_t z_mesh_store[GRID_MAX_POINTS_X][GRID_MAX_POINTS_Y];
@@ -2885,7 +2887,11 @@ void MarlinSettings::postprocess() {
 
         // Write crc to MAT along with other data, or just tack on to the beginning or end
         persistentStore.access_start();
+        #ifdef EEPROM_AT24CXX
+        const bool status = persistentStore.write_data(pos, src, MESH_STORE_SIZE);
+        #else
         const bool status = persistentStore.write_data(pos, src, MESH_STORE_SIZE, &crc);
+        #endif
         persistentStore.access_finish();
 
         if (status) SERIAL_ECHOLNPGM("?Unable to save mesh data.");
@@ -2910,7 +2916,9 @@ void MarlinSettings::postprocess() {
         }
 
         int pos = mesh_slot_offset(slot);
+        #ifndef EEPROM_AT24CXX
         uint16_t crc = 0;
+        #endif
         #if ENABLED(OPTIMIZED_MESH_STORAGE)
           int16_t z_mesh_store[GRID_MAX_POINTS_X][GRID_MAX_POINTS_Y];
           uint8_t * const dest = (uint8_t*)&z_mesh_store;
@@ -2919,7 +2927,11 @@ void MarlinSettings::postprocess() {
         #endif
 
         persistentStore.access_start();
+        #ifdef EEPROM_AT24CXX
+        uint16_t status = persistentStore.read_data(pos, dest, MESH_STORE_SIZE);
+        #else
         uint16_t status = persistentStore.read_data(pos, dest, MESH_STORE_SIZE, &crc);
+        #endif
         persistentStore.access_finish();
 
         #if ENABLED(OPTIMIZED_MESH_STORAGE)
