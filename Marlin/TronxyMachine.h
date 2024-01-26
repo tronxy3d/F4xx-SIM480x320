@@ -33,7 +33,7 @@
 #define UI_MARLIN_DEFAULT  0
 #define UI_SIM480X320      2
 
-#define TRONXY_PROJ        PROJ_X5SA400_2E
+#define TRONXY_PROJ        PROJ_X5SA_PRO_3E
 #define TRONXY_UI          UI_SIM480X320
 
 #if TRONXY_UI > 0
