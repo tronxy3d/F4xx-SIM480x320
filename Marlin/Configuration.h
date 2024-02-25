@@ -659,14 +659,14 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 290
-#define HEATER_1_MAXTEMP 290
-#define HEATER_2_MAXTEMP 275
-#define HEATER_3_MAXTEMP 275
-#define HEATER_4_MAXTEMP 275
-#define HEATER_5_MAXTEMP 275
-#define HEATER_6_MAXTEMP 275
-#define HEATER_7_MAXTEMP 275
+#define HEATER_0_MAXTEMP 320
+#define HEATER_1_MAXTEMP 320
+#define HEATER_2_MAXTEMP 320
+#define HEATER_3_MAXTEMP 320
+#define HEATER_4_MAXTEMP 320
+#define HEATER_5_MAXTEMP 320
+#define HEATER_6_MAXTEMP 320
+#define HEATER_7_MAXTEMP 320
 #if TRONXY_PROJ == PROJ_X5SA \
 || TRONXY_PROJ == PROJ_D01_PLUS \
 || TRONXY_PROJ == PROJ_X5SA_2E \
